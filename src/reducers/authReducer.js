@@ -2,17 +2,28 @@ import { LOGIN, GET_USERS, ERROR } from "../constants/actionTypes";
 
 const initialState = {
     user: null,
-    allUsers: []
+    allUsers: null
 }
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN:
-            
-            break;
+            return {
+                ...state,
+                user:{
+                    token: action?.payload?.token,
+                    company_id: action?.payload?.company_id,
+                    user_id: action?.payload?.user_id,
+                    name: action?.payload?.name,
+                    email: action?.payload?.email,
+                    icon: action?.payload?.icon,
+                }
+            }
         case GET_USERS:
-            
-            break;
+             return {
+                ...state,
+                allUsers: action?.payload
+            }
     
         default:
             return state;
