@@ -3,32 +3,32 @@ import * as api from "../api"
 
 export const addTask = (newTask) => async (dispatch) => {
     try {
-        const {data} = await api.addTask(newTask)
-        dispatch({type: ADD_TASK, payload: data})
+        const {data: {results}} = await api.addTask(newTask)
+        dispatch({type: ADD_TASK, payload: results})
     } catch (error) {
         dispatch({type: ERROR, error})
     }
 }
 export const getAllTasks = () => async (dispatch) => {
     try {
-        const {data} = await api.getAllTasks()
-        dispatch({type: GET_ALL_TASKS, payload: data})
+        const {data:{results}} = await api.getAllTasks()
+        dispatch({type: GET_ALL_TASKS, payload: results})
     } catch (error) {
         dispatch({type: ERROR, error})
     }
 }
 export const getSingleTask = (taskId) => async (dispatch) => {
     try {
-        const {data} = await api.getSingleTask(taskId)
-        dispatch({type: GET_SINGLE_TASK, payload: data})
+        const {data: {results}} = await api.getSingleTask(taskId)
+        dispatch({type: GET_SINGLE_TASK, payload: results})
     } catch (error) {
         dispatch({type: ERROR, error})
     }
 }
 export const updateTask = (taskId, updatedTask) => async (dispatch) => {
     try {
-        const {data} = await api.updateTask(taskId, updatedTask)
-        dispatch({type: UPDATE_TASK, payload: data})
+        const {data: {results}} = await api.updateTask(taskId, updatedTask)
+        dispatch({type: UPDATE_TASK, payload: results})
     } catch (error) {
         dispatch({type: ERROR, error})
     }
