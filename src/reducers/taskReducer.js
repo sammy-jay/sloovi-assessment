@@ -13,7 +13,7 @@ const initialState = {
   task: null,
   loading: true,
   error: null,
-  isEditable: true,
+  isEditable: false,
 };
 
 const taskReducer = (state = initialState, action) => {
