@@ -3,7 +3,6 @@ import axios from "axios";
 const API = axios.create({
   baseURL: "https://stage.api.sloovi.com",
   headers: {
-    "Access-Control-Allow-Origin": "*",
     Accept: "application/json",
     "Content-Type": "application/json",
   },
