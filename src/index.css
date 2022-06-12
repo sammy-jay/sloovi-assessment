@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .label {
+    @apply block font-normal text-sm lg:text-base dark:text-gray-300;
+  }
+  .selectInput {
+    @apply outline-none bg-transparent flex-grow px-[7px] py-[5px] dark:bg-gray-100;
+  }
+  .arrow {
+    @apply border-l border-l-gray-200 dark:border-l-gray-600 p-[1px] pl-2 w-9 h-9 cursor-pointer dark:text-gray-200 text-gray-900;
+  }
+  .text-container {
+    @apply mt-2 border-l border-l-gray-200 dark:border-l-gray-600 p-[1px] pl-2 dark:text-gray-200 text-gray-900;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const Navbar = () => {
+  const [user, setUser] = useState(null);
   const selected = "bg-gray-200 rounded-full";
   const [isLight, setIsLight] = useState(true);
   const handleSwitch = (mode) => {
@@ -19,6 +20,10 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, []);
+
+  useEffect(() => {
     if (
       localStorage.getItem("theme") === "dark" ||
       (!("theme" in localStorage) &&
@@ -32,12 +37,12 @@ const Navbar = () => {
     }
   }, [isLight]);
   return (
-    <nav className="w-full justify-between items-center flex shadow-md bg-gray-200 py-2 px-3 dark:bg-slate-800 lg:px-5 lg:py-3">
+    <nav className="w-full justify-between items-center flex shadow-md bg-gray-200 py-2 px-3 dark:bg-slate-800 lg:px-5 lg:py-3 sticky top-0 z-10 ">
       <h1 className="font-bold text-3xl dark:text-gray-200 text-gray-900">
         Sloovi
       </h1>
       <div className="flex space-x-1 md:space-x-3 lg:space-x-6">
-        <div className="bg-white rounded-full p-2 space-x-5  hidden md:flex dark:bg-slate-900">
+        <div className="bg-white rounded-full p-2 space-x-5 flex dark:bg-slate-900">
           <span
             className={`p-1 cursor-pointer ${isLight && selected}`}
             onClick={() => handleSwitch("light")}
@@ -77,15 +82,17 @@ const Navbar = () => {
             </svg>
           </span>
         </div>
+
         <div className="bg-white rounded-full w-[2px] space-x-1 hidden md:flex dark:bg-gray-300" />
 
-        <div className="flex flex-col items-end space-y-0">
+        <div className="hidden md:flex flex-col items-end space-y-0">
           <h6 className="text-lg font-semibold dark:text-gray-200">
-            Soneye Tolu
+            {user?.name}
           </h6>
-          <p className="text-sm dark:text-gray-400">sontol@gmail.com</p>
+          <p className="text-sm dark:text-gray-400">{user?.email}</p>
         </div>
-        <div className="flex justify-center items-center cursor-pointer hover:animate-pulse">
+
+        <div className="flex justify-center items-center cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-12 w-12 fill-current text-gray-600 dark:text-gray-200"
